@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="CdUG3tEm2uDzcAa9AzTz" name="Page-1">
-        <mxGraphModel dx="1696" dy="1231" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="838" dy="1092" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -75,7 +75,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="27" value="Student" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=0;" parent="1" vertex="1">
+                <mxCell id="27" value="CourseID" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1590" y="-190" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="51" value="" style="edgeStyle=none;html=1;entryX=0.335;entryY=0.3;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="29" target="42" edge="1">
@@ -103,7 +103,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="34" value="Send Student" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=1;" parent="1" vertex="1">
+                <mxCell id="34" value="Send CourseID" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="1440" y="-94" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="40" value="Update DB" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=1;" parent="1" vertex="1">
@@ -122,7 +122,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="44" value="Send Email" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=1;" parent="1" vertex="1">
+                <mxCell id="44" value="Message: Enrolled in Course" style="whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;arcSize=50;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="2050" y="-50" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="52" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.803;entryY=0.665;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="40" target="42" edge="1">
