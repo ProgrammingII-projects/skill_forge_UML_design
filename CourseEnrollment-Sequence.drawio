@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="8z4bH9vX1bGOm4ATTdyc" name="Page-1">
-        <mxGraphModel dx="2931" dy="890" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#000000" math="0" shadow="0">
+        <mxGraphModel dx="1993" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#000000" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -180,8 +180,8 @@
                 <mxCell id="56" value="" style="line;strokeWidth=4;direction=south;html=1;perimeter=backbonePerimeter;points=[];outlineConnect=0;fontColor=#ffffff;fillColor=#0050ef;strokeColor=#001DBC;" parent="1" vertex="1">
                     <mxGeometry x="739" y="390" width="10" height="52" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" value="Enrollment.enrole(Student,courseID)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FAFAFA;" parent="1" vertex="1">
-                    <mxGeometry x="410" y="339" width="93" height="45" as="geometry"/>
+                <mxCell id="58" value="student.enrole(courseID)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FAFAFA;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="343" width="93" height="45" as="geometry"/>
                 </mxCell>
                 <mxCell id="63" value="Confirm Enrollment" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FAFAFA;" parent="1" vertex="1">
                     <mxGeometry x="-559" y="290" width="120" height="45" as="geometry"/>
@@ -244,14 +244,17 @@
                 <mxCell id="100" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;strokeColor=#FFFFFF;fontColor=#FAFAFA;" vertex="1" parent="1">
                     <mxGeometry x="154.75" y="520" width="12.5" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="101" value="Press: Confirm" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#FFFFFF;" vertex="1" parent="1">
-                    <mxGeometry x="-154" y="530" width="100" height="30" as="geometry"/>
+                <mxCell id="101" value="Press: Ok" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="-144" y="530" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="103" value="userService.saveChanges()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FAFAFA;" vertex="1" parent="1">
                     <mxGeometry x="806" y="435" width="90" height="45" as="geometry"/>
                 </mxCell>
                 <mxCell id="104" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;strokeColor=#FFFFFF;fontColor=#FAFAFA;" vertex="1" parent="1">
                     <mxGeometry x="927.75" y="510" width="12.5" height="15" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="&amp;lt;&amp;lt;Create&lt;span style=&quot;font-size: 10px;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FAFAFA;" vertex="1" parent="1">
+                    <mxGeometry x="77.25" y="323" width="90" height="42" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
