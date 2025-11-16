@@ -5,9 +5,8 @@ import model.*;
 import model.database_manager.CourseModel;
 import model.database_manager.UserModel;
 import controller.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +22,15 @@ public class StudentDashboardFrame extends JFrame {
     private JButton viewButton;
     private List<Course> allCourses;
 
+    // Modern color scheme
+    private static final Color PRIMARY_COLOR = new Color(99, 102, 241);
+    private static final Color PRIMARY_DARK = new Color(79, 70, 229);
+    private static final Color CARD_COLOR = Color.WHITE;
+    private static final Color TEXT_COLOR = new Color(31, 41, 55);
+    private static final Color BORDER_COLOR = new Color(229, 231, 235);
+    private static final Font TITLE_FONT = new Font("Segoe UI", Font.BOLD, 28);
+    private static final Font BUTTON_FONT = new Font("Segoe UI", Font.BOLD, 14);
+
     public StudentDashboardFrame(User u, UserModel um, CourseModel cm) {
         this.user = u;
         this.userModel = um;
@@ -30,65 +38,231 @@ public class StudentDashboardFrame extends JFrame {
         this.courseController = new CourseController(courseModel);
         this.studentController = new StudentController(userModel, courseModel);
         
-        setTitle("Student - " + u.getUsername());
-        setSize(700, 400);
+        initializeFrame();
+        createUI();
+        refreshCourseList();
+    }
+    
+    private void initializeFrame() {
+        setTitle("Skill Forge - Student Dashboard");
+        setSize(900, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(null);
+        setResizable(true);
+        
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            // Use default
+        }
+    }
+    
+    private void createUI() {
+        // Main container with gradient background
+        JPanel mainPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                GradientPaint gradient = new GradientPaint(
+                    0, 0, new Color(99, 102, 241),
+                    getWidth(), getHeight(), new Color(139, 92, 246)
+                );
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        mainPanel.setLayout(new BorderLayout());
+        setContentPane(mainPanel);
+        
+        // Content panel
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.setOpaque(false);
+        contentPanel.setBorder(new EmptyBorder(30, 30, 30, 30));
+        
+        // White card container
+        JPanel whiteCard = new RoundedPanel(20);
+        whiteCard.setBackground(CARD_COLOR);
+        whiteCard.setLayout(new BorderLayout());
+        whiteCard.setBorder(new EmptyBorder(30, 30, 30, 30));
+        
+        // Header
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setOpaque(false);
         
         JLabel titleLabel = new JLabel("Available Courses");
-        titleLabel.setBounds(20, 20, 200, 25);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        add(titleLabel);
+        titleLabel.setFont(TITLE_FONT);
+        titleLabel.setForeground(TEXT_COLOR);
+        
+        JLabel userLabel = new JLabel("Welcome, " + user.getUsername());
+        userLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        userLabel.setForeground(new Color(107, 114, 128));
+        
+        headerPanel.add(titleLabel, BorderLayout.WEST);
+        headerPanel.add(userLabel, BorderLayout.EAST);
+        headerPanel.setBorder(new EmptyBorder(0, 0, 25, 0));
+        
+        // Main content area
+        JPanel mainContent = new JPanel(new BorderLayout(20, 0));
+        mainContent.setOpaque(false);
+        
+        // Left side - Course list
+        JPanel listPanel = new JPanel(new BorderLayout());
+        listPanel.setOpaque(false);
+        
+        JLabel listTitle = new JLabel("Course List");
+        listTitle.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        listTitle.setForeground(TEXT_COLOR);
+        listTitle.setBorder(new EmptyBorder(0, 0, 10, 0));
         
         listModel = new DefaultListModel<>();
         courseList = new JList<>(listModel);
+        courseList.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         courseList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        courseList.setBackground(Color.WHITE);
+        courseList.setForeground(TEXT_COLOR);
+        courseList.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(BORDER_COLOR, 1),
+            new EmptyBorder(10, 10, 10, 10)
+        ));
+        
         JScrollPane scrollPane = new JScrollPane(courseList);
-        scrollPane.setBounds(20, 55, 450, 280);
-        add(scrollPane);
+        scrollPane.setBorder(BorderFactory.createLineBorder(BORDER_COLOR, 1));
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setBackground(Color.WHITE);
         
-        enrollButton = new JButton("Enroll");
-        enrollButton.setBounds(490, 55, 180, 35);
-        enrollButton.addActionListener(new ActionListener() {
+        listPanel.add(listTitle, BorderLayout.NORTH);
+        listPanel.add(scrollPane, BorderLayout.CENTER);
+        
+        // Right side - Buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.setOpaque(false);
+        buttonPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+        
+        enrollButton = createPrimaryButton("Enroll");
+        enrollButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        enrollButton.setMaximumSize(new Dimension(200, 45));
+        enrollButton.addActionListener(e -> enrollInCourse());
+        
+        viewButton = createPrimaryButton("View Lessons");
+        viewButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        viewButton.setMaximumSize(new Dimension(200, 45));
+        viewButton.addActionListener(e -> viewLessons());
+        
+        JButton myCoursesButton = createPrimaryButton("My Enrolled Courses");
+        myCoursesButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        myCoursesButton.setMaximumSize(new Dimension(200, 45));
+        myCoursesButton.addActionListener(e -> showMyCourses());
+        
+        JButton logoutButton = createSecondaryButton("Logout");
+        logoutButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        logoutButton.setMaximumSize(new Dimension(200, 45));
+        logoutButton.addActionListener(e -> logout());
+        
+        buttonPanel.add(enrollButton);
+        buttonPanel.add(Box.createVerticalStrut(12));
+        buttonPanel.add(viewButton);
+        buttonPanel.add(Box.createVerticalStrut(12));
+        buttonPanel.add(myCoursesButton);
+        buttonPanel.add(Box.createVerticalStrut(20));
+        buttonPanel.add(logoutButton);
+        
+        mainContent.add(listPanel, BorderLayout.CENTER);
+        mainContent.add(buttonPanel, BorderLayout.EAST);
+        
+        whiteCard.add(headerPanel, BorderLayout.NORTH);
+        whiteCard.add(mainContent, BorderLayout.CENTER);
+        
+        contentPanel.add(whiteCard, BorderLayout.CENTER);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+    }
+    
+    private JButton createPrimaryButton(String text) {
+        JButton button = new JButton(text) {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                enrollInCourse();
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                
+                if (getModel().isPressed()) {
+                    g2d.setColor(PRIMARY_DARK);
+                } else if (getModel().isRollover()) {
+                    g2d.setColor(PRIMARY_DARK);
+                } else {
+                    g2d.setColor(PRIMARY_COLOR);
+                }
+                
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 8, 8);
+                g2d.dispose();
+                super.paintComponent(g);
             }
-        });
-        add(enrollButton);
+        };
         
-        viewButton = new JButton("View Lessons");
-        viewButton.setBounds(490, 100, 180, 35);
-        viewButton.addActionListener(new ActionListener() {
+        button.setFont(BUTTON_FONT);
+        button.setForeground(Color.WHITE);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.setOpaque(false);
+        return button;
+    }
+    
+    private JButton createSecondaryButton(String text) {
+        JButton button = new JButton(text) {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                viewLessons();
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                
+                if (getModel().isPressed()) {
+                    g2d.setColor(new Color(243, 244, 246));
+                } else if (getModel().isRollover()) {
+                    g2d.setColor(new Color(249, 250, 251));
+                } else {
+                    g2d.setColor(new Color(255, 255, 255));
+                }
+                
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 8, 8);
+                g2d.setColor(BORDER_COLOR);
+                g2d.setStroke(new BasicStroke(1.5f));
+                g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 8, 8);
+                g2d.dispose();
+                super.paintComponent(g);
             }
-        });
-        add(viewButton);
+        };
         
-        JButton myCoursesButton = new JButton("My Enrolled Courses");
-        myCoursesButton.setBounds(490, 145, 180, 35);
-        myCoursesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showMyCourses();
-            }
-        });
-        add(myCoursesButton);
+        button.setFont(BUTTON_FONT);
+        button.setForeground(TEXT_COLOR);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.setOpaque(false);
+        return button;
+    }
+    
+    private class RoundedPanel extends JPanel {
+        private int cornerRadius;
         
-        JButton logoutButton = new JButton("Logout");
-        logoutButton.setBounds(490, 300, 180, 35);
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                logout();
-            }
-        });
-        add(logoutButton);
+        public RoundedPanel(int radius) {
+            super();
+            cornerRadius = radius;
+            setOpaque(false);
+        }
         
-        refreshCourseList();
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2d.setColor(getBackground());
+            g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
+            g2d.dispose();
+        }
     }
     
     private void refreshCourseList() {
