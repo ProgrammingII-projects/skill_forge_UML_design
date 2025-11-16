@@ -1,6 +1,9 @@
 package controller;
 
 import model.*;
+import model.database_manager.CourseModel;
+import model.database_manager.UserModel;
+
 import java.util.Optional;
 
 public class StudentController {

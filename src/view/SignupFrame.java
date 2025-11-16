@@ -1,6 +1,8 @@
 package view;
 
 import model.*;
+import model.database_manager.CourseModel;
+import model.database_manager.UserModel;
 import controller.*;
 import javax.swing.*;
 import java.awt.*;

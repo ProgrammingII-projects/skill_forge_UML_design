@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.database_manager.UserModel;
 import utils.HashUtil;
 import java.util.*;
 import java.util.UUID;
