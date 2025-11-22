@@ -30,6 +30,11 @@ public class AdminService {
         courseDAO.updateCourseStatus(courseID ,"disapproved");
         
     }   
+
+    public void removeCourse(String CourseID) {
+        courseDAO.deleteCourse(CourseID);
+    }
+
     public List<User> getAllUsers() {
         return adminDAO.loadAll();
     }
@@ -63,6 +68,9 @@ public class AdminService {
                 .filter(c -> c.getApproveStatus().equals("pending"))
                 .toList();
     }
+
+   
+
 
 public void removeUser(String userId) {
         adminDAO.deleteUser(userId);
