@@ -22,7 +22,7 @@ public class AdminController {
     public void disapproveCourse(String CourseID) {
         adminService.disapproveCourse(CourseID);
     }
-
+/* 
     //users
     public void viewAnalytics(User s) {
         adminService.viewAnalytics(s);
@@ -49,7 +49,7 @@ public class AdminController {
     public void editCourse(Course c) {
         CourseController.editCourse(c);
     }
-
+*/
 
 
 
