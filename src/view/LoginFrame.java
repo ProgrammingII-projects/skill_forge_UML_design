@@ -1,8 +1,10 @@
 package view;
 
 import model.User;
-import view.Admin.InstructorDashboardFrame;
+import view.Admin.AdminDashboardFrame;
+import view.Instructor.InstructorDashboardFrame;
 import view.Student.StudentDashboardFrame;
+import controller.AdminController;
 import controller.AuthController;
 import controller.CourseController;
 import controller.StudentController;
@@ -21,16 +23,18 @@ public class LoginFrame extends JFrame {
     private CourseController courseController;
     private StudentController studentController;
     private LessonController lessonController;
+    private AdminController adminController;
     private JTextField emailField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton signupButton;
 
-    public LoginFrame(AuthController authController, CourseController courseController, StudentController studentController, LessonController lessonController) {
+    public LoginFrame(AuthController authController, CourseController courseController, StudentController studentController, LessonController lessonController,  AdminController adminController ) {
         this.authController = authController;
         this.courseController = courseController;
         this.studentController = studentController;
         this.lessonController = lessonController;
+        this.adminController = adminController;
         
         setTitle("Login");
         setSize(400, 220);
@@ -96,8 +100,12 @@ public class LoginFrame extends JFrame {
             
             if ("instructor".equalsIgnoreCase(user.getRole())) {
                 new InstructorDashboardFrame(user, authController, courseController, studentController, lessonController).setVisible(true);
-            } else {
+            } 
+            else if("student".equalsIgnoreCase(user.getRole())) {
                 new StudentDashboardFrame(user, authController, courseController, studentController, lessonController).setVisible(true);
+            }
+            else {
+                new AdminDashboardFrame(user, authController, courseController, studentController, lessonController, adminController).setVisible(true);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Login Failed", JOptionPane.ERROR_MESSAGE);
