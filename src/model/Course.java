@@ -9,6 +9,7 @@ public class Course {
     private String title;
     private String description;
     private String instructorId;
+    private String approveStatus;
     private List<Lesson> lessons;
     private List<String> students;
 
@@ -17,6 +18,7 @@ public class Course {
         this.title = title;
         this.description = description;
         this.instructorId = instructorId;
+        this.approveStatus = "pending";
         this.lessons = new ArrayList<>();
         this.students = new ArrayList<>();
     }
@@ -30,6 +32,7 @@ public class Course {
 
     public void setTitle(String t) { title = t; }
     public void setDescription(String d) { description = d; }
+    public void setApproveStatus(String s) { approveStatus = s; }
 
     public void addLesson(Lesson l) { lessons.add(l); }
     public void updateLesson(Lesson l) {
@@ -57,6 +60,7 @@ public class Course {
         o.put("title", title);
         o.put("description", description);
         o.put("instructorId", instructorId);
+        o.put("approveStatus", approveStatus);
         JSONArray la = new JSONArray();
         for (Lesson l : lessons) la.put(l.toJson());
         o.put("lessons", la);
