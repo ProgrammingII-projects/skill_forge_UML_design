@@ -64,16 +64,11 @@ public class AdminService {
                 .toList();
     }
 
-
-    public void approveCourse(Course c) {
-        c.setApproveStatus("approved");
-    }
-
     public void viewAnalytics(String STudentID) {
         
     }   
 
-    
+
 
 
     
