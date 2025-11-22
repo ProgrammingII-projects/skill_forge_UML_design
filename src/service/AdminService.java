@@ -25,8 +25,12 @@ public class AdminService {
     }
 
     public void disapproveCourse(String courseID) {
-        courseDAO.updateCourseStatus(courseID, "disapproved");
+        courseDAO.updateCourseStatus(courseID ,"disapproved");
+        
+    }   
 
+    public void removeCourse(String CourseID) {
+        courseDAO.deleteCourse(CourseID);
     }
 
     public List<User> getAllUsers() {
@@ -69,7 +73,10 @@ public class AdminService {
                 .toList();
     }
 
-    public void removeUser(String userId) {
+   
+
+
+public void removeUser(String userId) {
         adminDAO.deleteUser(userId);
     }
 
