@@ -14,12 +14,12 @@ public class Course {
     private List<Lesson> lessons;
     private List<String> students;
 
-    public Course(String courseId, String title, String description, String instructorId) {
+    public Course(String courseId, String title, String description, String instructorId, String approveStatus) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
         this.instructorId = instructorId;
-        this.approveStatus = "pending";
+        this.approveStatus = approveStatus;
         this.lessons = new ArrayList<>();
         this.students = new ArrayList<>();
     }
@@ -103,7 +103,7 @@ public class Course {
 
     public static Course fromJson(JSONObject o) {
         Course c = new Course(o.getString("courseId"), o.getString("title"), o.getString("description"),
-                o.getString("instructorId"));
+                o.getString("instructorId"), o.getString("approveStatus"));
         if (o.has("lessons")) {
             JSONArray la = o.getJSONArray("lessons");
             for (int i = 0; i < la.length(); i++)
