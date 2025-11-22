@@ -24,12 +24,8 @@ public class AdminController {
     }
 
     //users
-    public void viewAnalytics(User s) {
+    public void viewAnalytics(String s) {
         adminService.viewAnalytics(s);
-    }
-
-    public void addUsers() {
-        adminService.addUsers();
     }
 
     public void removeUsers() {
