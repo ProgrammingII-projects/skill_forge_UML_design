@@ -31,12 +31,12 @@ public class AdminController {
     public List<Course>  getApprovedCourses(){
 
         return adminService.getApprovedCourses();
-/* 
+    }
     //users
-    public void viewAnalytics(User s) {
+   /*  public void viewAnalytics(User s) {
         adminService.viewAnalytics(s);
     }
-
+ */
     public List<Course>  getDisapprovedCourses(){
 
         return adminService.getDisapprovedCourses();
@@ -47,11 +47,6 @@ public class AdminController {
         return adminService.getPendingCourses();
     }
 
-    //users
-    public void viewAnalytics(String userID) {
-
-        adminService.viewAnalytics(userID);
-    }
 
     public void removeUsers(String userID) {
 
@@ -71,7 +66,6 @@ public class AdminController {
     }
 
     public List<User> getAllStudents(){
-*/
 
          return adminService.getAllStudents();
     }
