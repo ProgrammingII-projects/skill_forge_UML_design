@@ -1,7 +1,8 @@
-package view;
+package view.Admin;
 
 import javax.swing.*;
 import model.User;
+import view.LoginFrame;
 import model.Course;
 import controller.CourseController;
 import controller.StudentController;

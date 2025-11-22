@@ -2,6 +2,7 @@
 import javax.swing.SwingUtilities;
 
 import view.*;
+import view.Admin.AdminDashboardFrame;
 
 
 public class test {

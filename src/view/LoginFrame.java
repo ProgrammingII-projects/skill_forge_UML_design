@@ -1,6 +1,8 @@
 package view;
 
 import model.User;
+import view.Admin.InstructorDashboardFrame;
+import view.Student.StudentDashboardFrame;
 import controller.AuthController;
 import controller.CourseController;
 import controller.StudentController;

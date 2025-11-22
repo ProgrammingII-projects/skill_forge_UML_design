@@ -19,10 +19,12 @@ public class AdminController {
 
     //approve statues
     public void approveCourse(String CourseID) {
+
         adminService.approveCourse(CourseID);
     }
 
     public void disapproveCourse(String CourseID) {
+
         adminService.disapproveCourse(CourseID);
     }
 
@@ -43,16 +45,19 @@ public class AdminController {
 
     //users
     public void viewAnalytics(String userID) {
+
         adminService.viewAnalytics(userID);
     }
 
     public void removeUsers(String userID) {
+
         adminService.removeUser(userID);
     }
 
 
     //courses
     public void removeCourse(String CourseID) {
+
         adminService.removeCourse(CourseID);
     }
 
@@ -62,14 +67,17 @@ public class AdminController {
     }
 
     public List<User> getAllStudents(){
+
          return adminService.getAllStudents();
     }
 
     public List<User> getAllInstructors() {
+
         return adminService.getAllInstructors();
     }
 
     public List<User> getAllAdmins(){
+        
         return adminService.getAllAdmins();
     }
     

@@ -1,7 +1,10 @@
-package view;
+package view.Admin;
 
 import javax.swing.*;
 import model.User;
+import view.LoginFrame;
+import view.Instructor.CourseEditorFrame;
+import view.Instructor.LessonEditorFrame;
 import model.Course;
 import controller.CourseController;
 import controller.StudentController;

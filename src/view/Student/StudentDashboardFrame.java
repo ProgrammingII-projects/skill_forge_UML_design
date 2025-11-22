@@ -1,7 +1,8 @@
-package view;
+package view.Student;
 
 import javax.swing.*;
 import model.*;
+import view.LoginFrame;
 import controller.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

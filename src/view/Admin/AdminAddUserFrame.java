@@ -1,4 +1,4 @@
-package view;
+package view.Admin;
 
 import controller.AuthController;
 import controller.CourseController;

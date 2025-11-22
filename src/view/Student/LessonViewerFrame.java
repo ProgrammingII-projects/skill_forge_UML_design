@@ -1,4 +1,4 @@
-package view;
+package view.Student;
 
 import javax.swing.*;
 import model.Course;
