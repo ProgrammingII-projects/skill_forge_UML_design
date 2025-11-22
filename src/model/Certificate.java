@@ -11,8 +11,8 @@ public class Certificate {
     private String courseId;
     private String issueDate;
 
-    public Certificate(String certificateId, String studentID, String courseId, String issueDate) {
-        this.certificateId = certificateId;
+    public Certificate( String studentId, String courseId) {
+        this.certificateId = "cert-" + studentId + "-" + courseId;
         this.studentId = studentId;
         this.courseId = courseId;
         LocalDate today=LocalDate.now();
